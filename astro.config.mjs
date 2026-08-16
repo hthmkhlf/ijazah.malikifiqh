@@ -7,4 +7,6 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
+	site: 'https://hthmkhlf.github.io',
+	base: '/ijazah.malikifiqh',
 });
