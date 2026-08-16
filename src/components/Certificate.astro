@@ -1,0 +1,84 @@
+---
+import '../styles/certificate.css';
+
+const names: string[] = [
+	'Muhammad Hassan',
+	'Fatima Al-Zahra',
+	'Omar Khan',
+	'Zainab Noor',
+];
+---
+
+<div
+	class="certificate"
+	role="img"
+	aria-label={`Sample certificate of achievement, shown here for ${names.join(', ')}`}
+>
+	<span class="certificate-corner certificate-corner--tl" aria-hidden="true"></span>
+	<span class="certificate-corner certificate-corner--tr" aria-hidden="true"></span>
+	<span class="certificate-corner certificate-corner--bl" aria-hidden="true"></span>
+	<span class="certificate-corner certificate-corner--br" aria-hidden="true"></span>
+
+	<p class="certificate-basmala" aria-hidden="true">  ﷽ </p>
+
+	<div class="certificate-ornament" aria-hidden="true">
+		<span class="certificate-ornament-line"></span>
+		<span class="certificate-ornament-dot"></span>
+		<span class="certificate-ornament-line"></span>
+	</div>
+
+	<div>
+		<p class="certificate-title">Certificate of Achievement</p>
+		<p class="certificate-subtitle">Foundational Knowledge Certification</p>
+	</div>
+
+	<div class="certificate-divider" aria-hidden="true"></div>
+
+	<div class="certificate-names" aria-hidden="true" data-rotate-interval="8000">
+		{names.map((name) => <span class="certificate-name">{name}</span>)}
+	</div>
+
+	<div>
+		<p class="certificate-recognition">has successfully completed the examination in</p>
+		<p class="certificate-course">Al-Murshid al-Mu'īn by Ibn ʿĀshir</p>
+	</div>
+
+	<div class="certificate-footer">
+		<div class="certificate-field">
+			<span class="certificate-field-line" aria-hidden="true"></span>
+			<span class="certificate-field-label">Examiner(s)</span>
+		</div>
+		<span class="certificate-emblem" aria-hidden="true"></span>
+		<div class="certificate-field">
+			<span class="certificate-field-line" aria-hidden="true"></span>
+			<span class="certificate-field-label">Date</span>
+		</div>
+	</div>
+</div>
+
+<script>
+	const ROTATE_INTERVAL_FALLBACK_MS = 8000;
+
+	function initCertificateRotation(container: HTMLElement): void {
+		const nameEls = Array.from(container.querySelectorAll<HTMLElement>('.certificate-name'));
+		if (nameEls.length === 0) return;
+
+		nameEls[0].classList.add('is-active');
+		if (nameEls.length === 1) return;
+
+		// Names still rotate under prefers-reduced-motion — only the fade/slide
+		// transition is disabled for that case (see certificate.css).
+		const intervalMs = Number(container.dataset.rotateInterval) || ROTATE_INTERVAL_FALLBACK_MS;
+		let activeIndex = 0;
+
+		setInterval(() => {
+			nameEls[activeIndex].classList.remove('is-active');
+			activeIndex = (activeIndex + 1) % nameEls.length;
+			nameEls[activeIndex].classList.add('is-active');
+		}, intervalMs);
+	}
+
+	document
+		.querySelectorAll<HTMLElement>('.certificate-names')
+		.forEach(initCertificateRotation);
+</script>

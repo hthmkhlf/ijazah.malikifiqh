@@ -1,0 +1,211 @@
+/*
+ * Certificate preview: names cross-fade in sequence (driven by the <script>
+ * in Certificate.astro, which toggles .is-active every ~8s). This file only
+ * defines the transition and the traditional/ornamental certificate frame.
+ */
+
+.certificate {
+	position: relative;
+	width: 100%;
+	max-width: 640px;
+	aspect-ratio: 16 / 11;
+	margin: 0 auto;
+	padding: clamp(1.5rem, 5vw, 3rem);
+	background-color: var(--color-bg);
+	border: 6px double var(--color-accent);
+	box-shadow: inset 0 0 0 6px var(--color-border);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(0.35rem, 1.2vw, 0.6rem);
+	text-align: center;
+	font-family: var(--font-serif);
+	color: var(--color-primary);
+}
+
+/* Corner medallions: an 8-point star motif (two overlapping squares), echoing the Andalous background pattern. */
+.certificate-corner {
+	position: absolute;
+	width: clamp(28px, 6vw, 40px);
+	height: clamp(28px, 6vw, 40px);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23C9A15C' stroke-width='4'%3E%3Crect x='22' y='22' width='56' height='56'/%3E%3Crect x='22' y='22' width='56' height='56' transform='rotate(45 50 50)'/%3E%3C/g%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.certificate-corner--tl {
+	top: 14px;
+	left: 14px;
+}
+.certificate-corner--tr {
+	top: 14px;
+	right: 14px;
+}
+.certificate-corner--bl {
+	bottom: 14px;
+	left: 14px;
+}
+.certificate-corner--br {
+	bottom: 14px;
+	right: 14px;
+}
+
+.certificate-basmala {
+	font-size: clamp(0.85rem, 2vw, 1rem);
+	color: var(--color-accent-text);
+}
+
+.certificate-ornament {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.certificate-ornament-line {
+	width: 28px;
+	height: 1px;
+	background: var(--color-border);
+}
+
+.certificate-ornament-dot {
+	width: 6px;
+	height: 6px;
+	transform: rotate(45deg);
+	background: var(--color-accent);
+}
+
+.certificate-title {
+	font-size: clamp(1.25rem, 3vw, 1.75rem);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+.certificate-subtitle {
+	margin-top: 0.25rem;
+	font-family: var(--font-sans);
+	font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--color-accent-text);
+}
+
+.certificate-divider {
+	width: 60px;
+	height: 1px;
+	background: var(--color-border);
+}
+
+.certificate-names {
+	position: relative;
+	width: 100%;
+	height: clamp(2.25rem, 5vw, 3rem);
+}
+
+.certificate-name {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: clamp(1.25rem, 4vw, 1.75rem);
+	font-weight: 700;
+	opacity: 0;
+	transform: translateY(6px);
+	transition:
+		opacity 0.6s ease,
+		transform 0.6s ease;
+}
+
+.certificate-name.is-active {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.certificate-recognition {
+	max-width: 32ch;
+	font-family: var(--font-sans);
+	font-size: clamp(0.75rem, 1.6vw, 0.9rem);
+	color: var(--color-text-secondary);
+	line-height: 1.5;
+}
+
+.certificate-course {
+	margin-top: 0.35rem;
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-size: clamp(0.9rem, 2vw, 1.05rem);
+	color: var(--color-primary);
+}
+
+.certificate-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: clamp(1rem, 4vw, 2rem);
+	margin-top: clamp(0.5rem, 2vw, 1rem);
+}
+
+.certificate-field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.35rem;
+	flex: 1;
+}
+
+.certificate-field-line {
+	width: 100%;
+	height: 1px;
+	background: var(--color-border);
+}
+
+.certificate-field-label {
+	font-family: var(--font-sans);
+	font-size: clamp(0.65rem, 1.4vw, 0.75rem);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--color-text-secondary);
+}
+
+/* Decorative seal: a circle with an 8-point star, echoing the corner medallions. */
+.certificate-emblem {
+	position: relative;
+	flex-shrink: 0;
+	width: clamp(32px, 6vw, 44px);
+	height: clamp(32px, 6vw, 44px);
+	border-radius: 50%;
+	border: 1.5px solid var(--color-accent);
+}
+
+.certificate-emblem::before,
+.certificate-emblem::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 45%;
+	height: 45%;
+	border: 1.5px solid var(--color-accent);
+	translate: -50% -50%;
+}
+
+.certificate-emblem::after {
+	transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.certificate-name {
+		transition: none;
+	}
+}
+
+@media print {
+	.andalous-pattern {
+		display: none;
+	}
+	.certificate {
+		box-shadow: none;
+	}
+}

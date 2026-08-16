@@ -1,0 +1,29 @@
+---
+// Placeholder schedule for the MVP — update once real dates are confirmed.
+const milestones = [
+	{ label: 'Registration Opens', date: 'September 1, 2026' },
+	{ label: 'Registration Closes', date: 'October 15, 2026' },
+	{ label: 'Exam Date', date: 'November 1, 2026' },
+	{ label: 'Results Released', date: 'December 1, 2026' },
+];
+---
+
+<section class="px-6 py-[var(--section-padding-y)] sm:px-8" id="timeline">
+	<div class="mx-auto max-w-2xl">
+		<h2 class="text-center font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] text-[var(--color-primary)]">
+			Exam Timeline
+		</h2>
+
+		<ol class="mt-12 border-l-2 border-[var(--color-accent)]/50 pl-8">
+			{
+				milestones.map((milestone) => (
+					<li class="relative pb-10 last:pb-0">
+						<span class="absolute top-1 -left-[2.15rem] h-3 w-3 rounded-full bg-[var(--color-accent)]" />
+						<p class="font-serif text-lg text-[var(--color-primary)]">{milestone.label}</p>
+						<p class="mt-1 text-sm text-[var(--color-text-secondary)]">{milestone.date}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>

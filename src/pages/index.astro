@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Certificate from '../components/Certificate.astro';
+import Examiners from '../components/Examiners.astro';
+import ETA from '../components/ETA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+	<main>
+		<Hero />
+		<section class="px-6 py-[var(--section-padding-y)] sm:px-8" id="certificate">
+			<div class="mx-auto max-w-3xl">
+				<h2
+					class="text-center font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] text-[var(--color-primary)]"
+				>
+					Your Certificate
+				</h2>
+				<p class="mx-auto mt-3 max-w-xl text-center text-[var(--color-text-secondary)]">
+					A preview of what you'll receive upon passing the exam.
+				</p>
+				<div class="mt-12">
+					<Certificate />
+				</div>
+			</div>
+		</section>
+		<Examiners />
+		<ETA />
+	</main>
+	<Footer />
+</Layout>

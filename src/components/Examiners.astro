@@ -1,0 +1,55 @@
+---
+// Placeholder roster — replace with the real examining scholars before launch.
+// `image` is a path under public/images (e.g. '/images/headshot.webp'); omit it to fall back to a blank circle.
+const examiners = [
+	{
+		name: 'Sh. Rami Nsour',
+		title: 'Founding Director of Tayba',
+		bio: 'Rami Nsour is a scholar, speaker, teacher, and translator of Islamic texts. He spent over 10 years studying Islam—including five years in Mauritania—earning an ‘ijāza to teach. He also completed an in-residence program researching fatāwā on Islamic faith, law, and practice.',
+		image: '/images/ShRamiNsourHeadshot.webp',
+	},
+	{
+		name: 'Dr. Shade Elmasry',
+		title: 'Director of Education at Safina Society',
+		bio: 'Born and raised in the great state of New Jersey, Dr. Shadee was inspired to study Islam in the traditional manner, traveling to places such as Makka, Madina, Egypt, Morocco, and Yemen, learning Arabic, aqida, and fiqh. He also completed an MA from The George Washington University with a thesis on Muhammad Alawi al-Maliki, and a PhD from the University of London on Imam al-Haddad.',
+		image: 'public/images/DrShadeeElmasry.jpg',
+	},
+];
+---
+
+<section class="px-6 py-[var(--section-padding-y)] sm:px-8" id="examiners">
+	<div class="mx-auto max-w-5xl">
+		<h2 class="text-center font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] text-[var(--color-primary)]">
+			Examining Scholars
+		</h2>
+		<p class="mx-auto mt-3 max-w-xl text-center text-[var(--color-text-secondary)]">
+			Your certification is examined and attested by qualified scholars.
+		</p>
+
+		<div class="mt-12 flex flex-wrap justify-center gap-6">
+			{
+				examiners.map((examiner) => (
+					<article
+						class="w-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-lg sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+					>
+						<div class="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full border border-[var(--color-accent)]/40 bg-[var(--color-bg)]">
+							{examiner.image && (
+								<img
+									src={examiner.image}
+									alt={examiner.name}
+									width="80"
+									height="80"
+									loading="lazy"
+									class="h-full w-full object-cover"
+								/>
+							)}
+						</div>
+						<h3 class="font-serif text-lg text-[var(--color-primary)]">{examiner.name}</h3>
+						<p class="mt-1 text-sm font-medium text-[var(--color-accent-text)]">{examiner.title}</p>
+						<p class="mt-3 text-sm text-[var(--color-text-secondary)]">{examiner.bio}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
