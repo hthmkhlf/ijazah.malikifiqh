@@ -1,18 +1,20 @@
 ---
+import { withBase } from '../utils/withBase';
+
 // Placeholder roster — replace with the real examining scholars before launch.
-// `image` is a path under public/images (e.g. '/images/headshot.webp'); omit it to fall back to a blank circle.
+// `image` is a path under public/images (e.g. 'images/headshot.webp'); omit it to fall back to a blank circle.
 const examiners = [
 	{
 		name: 'Sh. Rami Nsour',
 		title: 'Founding Director of Tayba',
 		bio: 'Rami Nsour is a scholar, speaker, teacher, and translator of Islamic texts. He spent over 10 years studying Islam—including five years in Mauritania—earning an ‘ijāza to teach. He also completed an in-residence program researching fatāwā on Islamic faith, law, and practice.',
-		image: '/images/ShRamiNsourHeadshot.webp',
+		image: 'images/ShRamiNsourHeadshot.webp',
 	},
 	{
 		name: 'Dr. Shade Elmasry',
 		title: 'Director of Education at Safina Society',
 		bio: 'Born and raised in the great state of New Jersey, Dr. Shadee was inspired to study Islam in the traditional manner, traveling to places such as Makka, Madina, Egypt, Morocco, and Yemen, learning Arabic, aqida, and fiqh. He also completed an MA from The George Washington University with a thesis on Muhammad Alawi al-Maliki, and a PhD from the University of London on Imam al-Haddad.',
-		image: 'public/images/DrShadeeElmasry.jpg',
+		image: 'images/DrShadeeElmasry.jpg',
 	},
 ];
 ---
@@ -35,7 +37,7 @@ const examiners = [
 						<div class="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full border border-[var(--color-accent)]/40 bg-[var(--color-bg)]">
 							{examiner.image && (
 								<img
-									src={examiner.image}
+									src={withBase(examiner.image)}
 									alt={examiner.name}
 									width="80"
 									height="80"
