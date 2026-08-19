@@ -1,0 +1,60 @@
+---
+interface Benefit {
+	label: string;
+}
+
+const benefits: Benefit[] = [
+	{ label: 'Backed by top Mālikī scholars' },
+	{ label: 'Earn cross-institutional credit' },
+	{ label: 'Take higher-level exams' },
+];
+---
+
+<section class="px-6 py-[var(--section-padding-y)] sm:px-8" id="benefits">
+	<div class="mx-auto max-w-4xl">
+		<h2
+			class="text-center font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] text-[var(--color-primary)]"
+		>
+			What You'll Gain
+		</h2>
+
+		<ul class="mt-12 flex list-none flex-wrap justify-center gap-6 p-0">
+			{
+				benefits.map((benefit) => (
+					<li class="flex w-full flex-col items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-6 text-center sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+						<span class="benefit-icon" aria-hidden="true" />
+						<p class="font-serif text-lg text-[var(--color-primary)]">{benefit.label}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	/* Echoes the 8-point-star medallion used on the certificate and corners. */
+	.benefit-icon {
+		position: relative;
+		width: 48px;
+		height: 48px;
+		flex-shrink: 0;
+		border-radius: 50%;
+		border: 1.5px solid var(--color-accent);
+	}
+
+	.benefit-icon::before,
+	.benefit-icon::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 45%;
+		height: 45%;
+		border: 1.5px solid var(--color-accent);
+		translate: -50% -50%;
+	}
+
+	.benefit-icon::after {
+		transform: rotate(45deg);
+	}
+</style>

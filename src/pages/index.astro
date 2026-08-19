@@ -1,15 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import ETA from '../components/ETA.astro';
 import Certificate from '../components/Certificate.astro';
 import Examiners from '../components/Examiners.astro';
-import ETA from '../components/ETA.astro';
+import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
 	<main>
 		<Hero />
+		<FAQ />
+		<Examiners />
 		<section class="px-6 py-[var(--section-padding-y)] sm:px-8" id="certificate">
 			<div class="mx-auto max-w-3xl">
 				<h2
@@ -25,7 +28,6 @@ import Footer from '../components/Footer.astro';
 				</div>
 			</div>
 		</section>
-		<Examiners />
 		<ETA />
 	</main>
 	<Footer />
